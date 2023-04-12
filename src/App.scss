@@ -1,0 +1,481 @@
+/* CUSTOM PROPIERTIES */
+
+  //FONTS
+  @font-face {
+  font-family: pokemon;
+  src: url(./fonts/PokemonGb.ttf) format("truetype");
+}
+  //COLORS
+
+  //PRINCIPAL
+  $black: #100A0D;
+  $red: #DE1A13;
+  $white: #F9F9F9;
+
+  //SECUNDARY
+  $pokeball-circle: #212121;
+  $grey : #C2C2C2;
+
+/* MIXINS */
+
+@mixin responsive ($min_width){
+  @media screen and (min-width: $min_width){
+    @content;
+  }
+}
+
+@mixin flex ($direction, $just, $align, $gap){
+  display: flex;
+  flex-direction: $direction;
+  justify-content: $just;
+  align-items: $align;
+  gap: $gap;
+}
+
+@mixin grid ($columns, $rows, $gap){
+  display: grid;
+  grid-template-columns: repeat($columns,1fr);
+  grid-template-rows: repeat($rows, 1fr);
+  gap: $gap;
+}
+
+@mixin font ($color, $family,$size,$weight){
+  color: $color;
+  font-family: $family;
+  font-size: $size;
+  font-weight: $weight;
+}  
+
+.App{
+  @include flex(column, space-between, center, 0);
+  font-family: pokemon;
+  min-height: 100vh;
+}
+
+.Home{
+  @include flex(column, center, center, 3em);
+  padding: 1.5em 1em;
+
+  &__img{
+    max-width: 60em;
+    width: 100%;
+  }
+
+  &__h1{
+    color: $red;
+    text-align: center;
+  }
+
+  &__form{
+    @include flex(row, center, center, 0);
+    max-width: 30em;
+    width: 100%;
+  }
+
+  &__input--text{
+    font-family: pokemon;
+    padding: .5em;
+    width: 100%;
+  }
+
+  &__input--btn{
+    background: $red;
+    border-color: $red;
+    color: $white;
+    cursor: pointer;
+    font-family: pokemon;
+    padding: .5em 2em;
+  }
+}
+
+.Pokedex{
+  @include flex(column, center, center, 1.5em);
+  padding: 1.5em 1em;
+  width: 100%;
+
+  &__div--search{
+    width: 100%;
+    @include flex(column, center, center, 1.5em);
+    @include responsive(750px){
+      flex-direction: row;
+    }
+  }
+
+  &__span{
+    color: $red;
+    text-transform: capitalize;
+  }
+
+  &__form{
+    @include flex(column, center, center, 1em);
+    width: 100%;
+    max-width: 30em;
+    padding: 0 1em;
+  }
+
+  &__div--form{
+    @include flex(column, center, center, 0);
+    @include responsive(750px){
+      flex-direction: row;
+    }
+    max-width: 30em;
+    width: 100%;
+  }
+
+  &__input--text{
+    font-family: pokemon;
+    padding: .5em;
+    width: 100%
+  }
+
+  &__input--btn{
+    background: $red;
+    border-color: $red;
+    color: $white;
+    cursor: pointer;
+    font-family: pokemon;
+    padding: .5em 2em;
+    width: 100%;
+    @include responsive(750px){
+      width: 40%;
+    }
+  }
+
+  &__div--search-sub{
+    border-bottom: 1px solid $black ;
+    overflow: hidden;
+    width: 15em;
+    max-width: 100%;
+    height: 2em;
+    position: relative;
+  }
+
+  &__div--search-sub .visible{
+    border-bottom: 1px solid $black ;
+    overflow: hidden;
+    width: 15em;
+    max-width: 100%;
+    height: 2em;
+    position: relative;
+  }
+
+  &__ul{
+    position: absolute;
+    background-color: $white;
+    font-family: pokemon;
+    list-style: none;
+    width: 15em;
+    border: 1px solid $black;
+    z-index: 1;
+    
+  }
+
+  &__btn--ul{ 
+    background-color: $white;
+    padding: .1em;
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 3;
+  }
+
+  &__li{
+    padding: .4em;
+    width: 100%;
+    &:hover{
+      color: $white;
+      cursor: pointer;
+      background-color: $red;
+    }
+  }
+
+  &__div--PokemonCard-container{
+    @include grid(1, auto, 1.5em );
+    @include responsive(750px){
+      @include grid(2, auto, 1.5em )
+    }
+    @include responsive(1200px){
+      @include grid(3, auto, 1.5em )
+    }
+    @include responsive(1600px){
+      @include grid(4, auto, 1.5em )
+    }
+    @include responsive(2000px){
+      @include grid(5, auto, 1.5em )
+    }
+    justify-content: center;
+    align-items: center;
+  }
+
+  &__div--PokemonCard-container .one-card{
+    @include grid(1, 1, 1.5em );
+  }
+
+  &__div--btns{
+    @include flex(row, space-around, center,0);
+    width:100%
+  }
+
+  &__btn--page{
+    background-color: transparent;
+    border: 10px solid $red;
+    border-radius: 1em;
+    padding: 1em;
+  }
+
+  &__i{
+    color: $black;
+  }
+}
+
+.Pokemon{
+  @include flex (column, center, center, 2.5em);
+  margin-top: 4em;
+
+  &__div--up{
+    @include flex (column, center, center, 2.5em);
+    width: 100%;
+  }
+
+  &__div--banner{
+    background-color: $red;
+    height: 5em;
+    width: 100%;
+  }
+
+  &__span--id{
+    border: 1px solid $grey;
+    padding: .25em;
+  }
+
+  &__div--name{
+    @include flex (column, center, center, 0);
+    border: 1px solid $grey;
+    height: 0;
+    width: 100%;
+  }
+
+  &__div--measurements{
+    @include flex (row, center, center, 2.5em);
+    font-size: .7em;
+  }
+
+  &__div--weight,
+  &__div--height{
+    @include flex (column, center, center, 1em)
+  }
+
+  &__div--type-skills{
+    @include flex (column, center, center, 2.5em)
+  }
+
+  &__div--type{
+    @include flex (column, center, center, 1em)
+  }
+
+  &__div--type-sub{
+    @include flex (row, center, center, 2.5em)
+  }
+
+  &__span--type1,
+  &__span--type2{
+    background-color: #DE1A13;
+    font-size: .75em;
+    color: #F9F9F9;
+    padding: .75em 1em;
+  }
+
+  &__div--skills{
+    @include flex (column, center, center, 1em)
+  }
+
+  &__div--skills-sub{
+    @include flex (row, center, center, 2.5em)
+  }
+  
+  &__span--skills1,
+  &__span--skills2{
+    border: 1px solid $grey;
+    font-size: .75em;
+    padding: .75em 1em;
+  }
+
+  &__div--down{
+    @include flex (column, center, center, 0);
+    width: 100%;
+  }
+
+  &__div--stats{
+    @include flex (column, center, stretch, 1.5em);
+    align-self: stretch;
+  }
+
+  &__div--stats-sup{
+    @include flex (column, center, stretch, .5em);
+  }
+
+  &__div--stats-data{
+    @include flex (row, space-between, center, 0);
+  }
+
+  &__span--stats{
+    font-size: 0.75em;
+  }
+
+} 
+
+.Banner{
+  height: 6em;
+  position: relative;
+  width: 100%;
+
+  &__div--red{
+    background-color: $red;
+    height: 60%;
+    width: 100%;
+  }
+
+  &__img{
+    margin-left: .1em;
+    width: 17.5em;
+  }
+
+  &__div--black{
+    background-color: $black;
+    height: 40%;
+    width: 100%;
+  }
+
+  &__div--circle{
+    height: 4em;
+    width: 4em;
+    background-color: $white;
+    border: 8px solid $black;
+    border-radius: 50%;
+    padding: .75em;
+    position: absolute;
+    top: 80%;
+    left: 90%;
+    transform: translate(-50%, -50%);
+  }
+
+  &__div--inside{
+    background-color: $pokeball-circle;
+    border: 5px solid $black;
+    border-radius: 50%;
+    height: 1.5em;
+    width: 1.5em;
+
+  }
+}
+
+.PokemonCard{
+  @include flex(column, center, center, 0);
+  border: 10px solid $red;
+  border-radius: 1em;
+
+  &__div--border{
+    border: 7px solid $black;
+    border-radius: .4em;
+    width: 100%;
+  }
+
+  &__div--banner{
+    height: 7em;
+    width: 100%;
+    position: relative;
+  }
+
+  &__img{
+    position: absolute;
+    top: 75%;
+    left: 50%;
+    width: 10em;
+    transform: translate(-50%, -50%);
+  }
+
+  &__div--data{
+    padding-top: 2em;
+    width: 100%
+  }
+
+  &__div--up{
+    @include flex(column, center, center, .5em);
+    padding: 2em 1em;
+  }
+
+  &__h2{
+    @include font($black,pokemon, 1.5em, 600);
+    margin-bottom: 1em;
+    text-transform: capitalize;
+  }
+
+  &__h3{
+    @include font($black,pokemon, 1.25em, 500);
+    text-transform: capitalize;
+  }
+
+  &__span--type{
+    @include font($grey,pokemon, 1em, 500);
+  }
+
+  &__hr{
+    background-color: $grey;
+    border: none;
+    height: 2px;
+    opacity: .25;
+  }
+
+  &__div--down{
+    @include grid(2,2, 2em);
+    padding: 2em 1em;
+  }
+
+  &__div--inter{
+    @include flex(column, center, center, .5em)
+  }
+
+  &__h4{
+    @include font($grey,pokemon, 1em, 500);
+    text-transform: uppercase;
+  }
+}
+
+.Footer{
+  height: 6em;
+  position: relative;
+  width: 100%;
+
+  &__div--red{
+    background-color: $red;
+    height: 60%;
+    width: 100%;
+  }
+  &__div--black{
+    background-color: $black;
+    height: 40%;
+    width: 100%;
+  }
+
+  &__div--circle{
+    height: 5em;
+    width: 5em;
+    background-color: $white;
+    border: 8px solid $black;
+    border-radius: 50%;
+    padding: .75em;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+  }
+
+  &__div--inside{
+    background-color: $pokeball-circle;
+    border: 5px solid $black;
+    border-radius: 50%;
+    height: 2.5em;
+    width: 2.5em;
+
+  }
+}
