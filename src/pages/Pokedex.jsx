@@ -118,8 +118,8 @@ const Pokedex = () => {
           </div>
         </form>
         <div className={style}>
-          <ul className="Pokedex__ul" name="" id="" value="">
-            <button className='Pokedex__btn--ul' onClick={() => setStyle("&__div--search-sub .visible")}>
+          {/* <ul className="Pokedex__ul" name="" id="" value="">
+            <button className='Pokedex__btn--ul' onClick={() => setStyle("&__div--search-sub")}>
               <i className='Pokedex__i bx bx-chevron-down bx-sm'></i>
             </button>
             <li className='Pokedex__li' value="All pokemons" key={0} selected onClick={() => {
@@ -131,7 +131,7 @@ const Pokedex = () => {
               setIsVisiblePokemonByName(false)
               setStyle("Pokedex__ul--hidden")
               }}>{dataType.name}</li>))}
-          </ul>
+          </ul> */}
         </div>
        </div>
        <div className={pokemonCardContainerStyle}>
